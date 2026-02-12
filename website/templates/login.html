@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth-box">
+    <h2>Login to Stylo</h2>
+
+    <input type="email" id="login-email" placeholder="Email">
+    <input type="password" id="login-password" placeholder="Password">
+    <button onclick="loginEmail()">Login</button>
+
+    <div class="separator">
+        <br>
+        <hr> <span>OR</span>
+        <hr>
+    </div>
+
+    <p class="auth-footer">
+        Don't have an account? <button><a href="{{ url_for('auth.signup') }}">Create New Account</a></button>
+    </p>
+</div>
+
+<script>
+    function loginEmail() {
+        const email = document.getElementById('login-email').value;
+        const pass = document.getElementById('login-password').value;
+        firebase.auth().signInWithEmailAndPassword(email, pass)
+            .then((res) => syncSession(res.user.email))
+            .catch(e => alert(e.message));
+    }
+
+</script>
+{% endblock %}

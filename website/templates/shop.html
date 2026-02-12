@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="products-wrapper">
+    <h2 class="section-title">🔥 Featured Collection</h2>
+
+    <div class="products-grid">
+        {% for product in products %}
+
+        <div class="product-card">
+            <img src="{{ product.image }}" alt="{{ product.name }}">
+
+            <div class="card-body">
+                <h3>{{ product.name }}</h3>
+                <div class="price">₹ {{ product.price }}</div>
+
+                <!-- CART CONTROL -->
+                <div class="cart-control">
+
+                    <!-- Add to cart button -->
+                    <button class="add-btn" onclick="showQty(this)">
+                        Add to Cart
+                    </button>
+
+                    <!-- Quantity box -->
+                    <form method="POST" action="/add-to-cart/{{ product._id }}" class="qty-box hidden">
+
+                        <button type="button" onclick="changeQty(this, -1)">−</button>
+
+                        <input type="hidden" name="quantity" value="1">
+                        <span class="qty">1</span>
+
+                        <button type="button" onclick="changeQty(this, 1)">+</button>
+
+                        <button type="submit" class="update-btn">✔</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</section>
+
+<!-- JS -->
+<script>
+    function showQty(btn) {
+        const control = btn.parentElement;
+        btn.classList.add("hidden");
+
+        const qtyBox = control.querySelector(".qty-box");
+        qtyBox.classList.remove("hidden");
+
+        qtyBox.querySelector(".qty").innerText = 1;
+        qtyBox.querySelector("input[name='quantity']").value = 1;
+    }
+
+    function changeQty(button, change) {
+        const qtyBox = button.parentElement;
+        const qtySpan = qtyBox.querySelector(".qty");
+        const qtyInput = qtyBox.querySelector("input[name='quantity']");
+        const addBtn = qtyBox.parentElement.querySelector(".add-btn");
+
+        let qty = parseInt(qtySpan.innerText);
+        qty += change;
+
+        if (qty <= 0) {
+            qtyBox.classList.add("hidden");
+            addBtn.classList.remove("hidden");
+            return;
+        }
+
+        qtySpan.innerText = qty;
+        qtyInput.value = qty;
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="products-section">
+
+    <h2 class="section-title">🛒 Your Cart</h2>
+
+    {% if products %}
+
+    <div class="products-grid">
+
+        {% for product in products %}
+        <div class="product-card">
+
+            <img src="{{ product.image }}" alt="{{ product.name }}">
+
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+
+                <p class="price">₹ {{ product.price }}</p>
+
+                <p>Qty: {{ product.quantity }}</p>
+
+                <form action="{{ url_for('views.remove_from_cart', product_id=product._id) }}" method="POST">
+                    <button class="remove-btn">Remove</button>
+                </form>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <!-- CART SUMMARY -->
+    <div class="cart-summary">
+        <h3>Total: ₹ {{ total }}</h3>
+        <button>
+            <a href="{{ url_for('views.checkout') }}" class="order-btn">
+                Place Order
+            </a>
+        </button>
+    </div>
+
+    {% else %}
+    <p style="text-align:center;">Your cart is empty.</p>
+    {% endif %}
+
+</section>
+
+{% endblock %}

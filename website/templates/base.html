@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stylo Clothes Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+</head>
+
+<body>
+
+    <!-- ✅ NAV FIXED -->
+    <nav>
+        <a href="{{ url_for('views.home') }}" class="logo">STYLO</a>
+
+        <div class="nav-links">
+            <a href="{{ url_for('views.home') }}" class="nav-item">Home</a>
+
+            {% if user %}
+            <a href="{{ url_for('views.products') }}" class="nav-item">Shop</a>
+            <a href="{{ url_for('views.cart') }}" class="nav-item">Cart</a>
+            <a href="{{ url_for('auth.logout') }}" class="nav-item">Logout</a>
+            {% else %}
+            <a href="{{ url_for('auth.login') }}" class="nav-item">Login</a>
+            <a href="{{ url_for('auth.signup') }}" class="nav-signup">Signup</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCJlcfsFdKrr42V_Utj2w-PSOfFYm8Xla8",
+            authDomain: "stylo-c2689.firebaseapp.com",
+            projectId: "stylo-c2689",
+            storageBucket: "stylo-c2689.firebasestorage.app",
+            messagingSenderId: "384362851732",
+            appId: "1:384362851732:web:779e81ae5c16d0ad763381",
+            measurementId: "G-7FH5NW13SE"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        async function syncSession(email) {
+            await fetch('/set_session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_email: email })
+            });
+            window.location.href = "{{ url_for('views.products') }}";
+        }
+    </script>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+
+</html>

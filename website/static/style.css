@@ -1,0 +1,430 @@
+/* =========================
+   1. RESET & BASE
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #fff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* =========================
+   2. TYPOGRAPHY
+========================= */
+h1,
+h2,
+h3 {
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =========================
+   3. NAVBAR
+========================= */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 8%;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.nav-item {
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #555;
+    transition: 0.25s;
+}
+
+.nav-item:hover {
+    background: #f2f2f2;
+    color: #000;
+}
+
+.active-page {
+    background: #000;
+    color: #fff;
+}
+
+/* =========================
+   4. HERO SECTION
+========================= */
+.hero-full {
+    height: 90vh;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+        url('https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1500');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-content h1 {
+    font-size: 72px;
+    letter-spacing: 12px;
+    font-weight: 300;
+}
+
+.subtitle {
+    font-size: 14px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+
+/* =========================
+   5. COMMON SECTIONS
+========================= */
+section {
+    padding: 80px 8%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 50px;
+    font-weight: 300;
+}
+
+/* =========================
+   6. PRODUCTS
+========================= */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    transition: 0.25s;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 18px;
+    text-align: center;
+}
+
+.card-body h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ff4d30;
+    margin-bottom: 12px;
+}
+
+/* =========================
+   7. CART CONTROLS (+ / -)
+========================= */
+
+.cart-control {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    /* CENTER whole control */
+}
+
+/* Add to cart button */
+.add-btn {
+    width: 100%;
+    padding: 10px;
+    background: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* Quantity box */
+.qty-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* CENTER all items */
+    gap: 12px;
+
+    border: 2px solid #000;
+    padding: 8px 14px;
+    border-radius: 12px;
+    width: fit-content;
+}
+
+/* + and - buttons */
+.qty-box button {
+    background: #000;
+    color: #fff;
+    border: none;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Quantity number */
+.qty {
+    font-size: 18px;
+    font-weight: 600;
+    min-width: 24px;
+    text-align: center;
+}
+
+/* Hover effect */
+.qty-box button:hover {
+    background: #222;
+}
+
+/* =========================
+   8. AUTH (LOGIN / SIGNUP)
+========================= */
+.auth-box {
+    max-width: 380px;
+    margin: 100px auto;
+    padding: 50px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.auth-box h2 {
+    margin-bottom: 30px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+input:focus {
+    outline: none;
+    border-color: #000;
+}
+
+/* =========================
+   9. BILL / CHECKOUT
+========================= */
+.bill-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f7fb;
+}
+
+.bill-card {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.bill-row,
+.bill-total {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
+}
+
+.bill-total {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* =========================
+   10. BUTTONS & UTILITIES
+========================= */
+button {
+    padding: 12px 22px;
+    border-radius: 8px;
+    border: none;
+    background: #000;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #222;
+}
+
+.hidden {
+    display: none;
+}
+
+/* =========================
+   CART PAGE
+========================= */
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.cart-summary {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.cart-summary h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+/* Reuse product card look */
+.product-card {
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Cart qty text */
+.qty-box {
+    margin: 12px 0;
+    font-weight: 600;
+}
+
+/* Remove button */
+.remove-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background: #222;
+}
+
+/* =========================
+   FIX PRODUCT SIZE (SHOP + CART)
+========================= */
+
+/* Product card fixed size */
+.product-card {
+    width: 260px;
+    /* FIXED WIDTH */
+    height: 420px;
+    /* FIXED HEIGHT */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Image wrapper fix */
+.product-card img {
+    width: 100%;
+    height: 240px;
+    /* FIXED IMAGE HEIGHT */
+    object-fit: cover;
+    /* NO STRETCH */
+    border-radius: 12px 12px 0 0;
+}
+
+/* Product info stays inside */
+.product-info {
+    padding: 14px;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Product name limit lines */
+.product-info h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Price */
+.price {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 8px 0;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    /* CENTER cards */
+}
