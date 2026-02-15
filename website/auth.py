@@ -31,5 +31,5 @@ def set_session():
 # ---------------- LOGOUT ----------------
 @auth.route('/logout')
 def logout():
-    session.pop('user', None)
+    session.clear()
     return redirect(url_for('views.home'))

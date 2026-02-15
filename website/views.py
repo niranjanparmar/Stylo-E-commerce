@@ -10,20 +10,21 @@ views = Blueprint("views", __name__)
 # ---------------- HOME ----------------
 @views.route("/")
 def home():
-    return render_template(
-        "home.html",
-        user=session.get("user")
-    )
+    if 'user' in session:
+        user_email = session['user']
+        
+        return render_template('home.html', user=user_email)
+    
+    return redirect(url_for('auth.login'))
 
 # ---------------- PRODUCTS / SHOP ----------------
 @views.route("/products")
 def products():
-    all_products = get_all_products()
-    return render_template(
-        "shop.html",
-        products=all_products,
-        user=session.get("user")
-    )
+    if 'user' in session:
+        all_products = get_all_products()
+        return render_template("shop.html",products=all_products,user=session.get("user"))
+    return redirect(url_for('auth.login'))
+    
 # ---------------- Order confirme --------------
 @views.route("/confirme")
 def confirme():
