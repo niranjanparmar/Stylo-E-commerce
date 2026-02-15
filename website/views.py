@@ -10,12 +10,9 @@ views = Blueprint("views", __name__)
 # ---------------- HOME ----------------
 @views.route("/")
 def home():
-    if 'user' in session:
-        user_email = session['user']
-        
-        return render_template('home.html', user=user_email)
+    user_email = session['user']  
     
-    return redirect(url_for('auth.login'))
+    return render_template('home.html', user=user_email)
 
 # ---------------- PRODUCTS / SHOP ----------------
 @views.route("/products")
