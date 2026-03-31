@@ -8,11 +8,14 @@ from website.services.product_service import (
 views = Blueprint("views", __name__)
 
 # ---------------- HOME ----------------
-@views.route("/")
+@views.route('/')
 def home():
-    user_email = session['user']  
-    
-    return render_template('home.html', user=user_email)
+    user_email = session.get('user')
+
+    if not user_email:
+        return redirect('/login')  # if not logged in
+
+    return render_template("home.html", user=user_email)
 
 # ---------------- PRODUCTS / SHOP ----------------
 @views.route("/products")
